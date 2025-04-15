@@ -1,0 +1,138 @@
+ 
+1.
+
+If you can correctly answer these CramSaver questions, save time by skimming the Exam Alerts in this section and then completing the Cram Quiz. If you are in any doubt at all, read everything in this chapter. 1. Which of the following web pages would be most likely to give you information about the operating system and web server a website is using? 
+
+D.netcraft.com
+
+2.
+
+When examining an email header, what does the References section denote? 
+
+C.The Message ID that is being replied to
+
+3.
+Carol is trying to find information about a specific IP address in Belgium. Which registry should she check? 
+
+A.RIPE NCC
+
+4.
+Which of the following Google search strings will find documents in the URL that contains the keyword given? 
+
+A.inurl
+
+5.
+Which of the following modes for InSpy specifically searches for employees of a company on LinkedIn? 
+
+C.EmpSpy
+
+6.
+You have been asked to perform a penetration test on a company. You have only been given the company domain name and gateway IP address. What type of test is this?
+
+D.Black box
+
+7.
+Clarence is performing an Nmap scan of a database server, using nmap -sR -oX - T3 192.168.1.19. What is this scan? 
+
+B.An RPC scan with normal speed and XML output
+
+8.
+What is the TCP window size for Windows 10? 
+
+D.65535
+
+9.
+Jerrod is running an hping v3 scan on a target machine. He wants to send TCP SYN packets every 3 seconds to port 445 on host 10.10.10.15. Which command will do that? 
+
+C.hping3 10.10.10.15 -S -V -p 445 -i 3
+
+10.
+Which of the following nmap commands performs a SYN scan on the target 192.168.1.10 using aggressive speed? 
+
+C.nmap -sS -T4 192.168.1.10
+
+11.
+What type of scan does hping3 www.chuckeasttom.com -a 182.10.10.10 perform? 
+
+B.It performs an hping scan of www.chuckeasttom.com, spoofing the IP address 182.10.10.10.
+
+12.
+What will you accomplish by changing the ServerSignature line to ServerSignature Off in the httpd.conf file? 
+
+A.Turn off banner information in Apache.
+
+13.
+ _____ 是想要攻擊電腦，但缺乏所需知識的人。​​​​​​​
+
+A.腳本小子
+
+14.
+關於機敏性（Confidentiality），下列敘述何者正確？
+
+
+B.資訊於儲存、傳輸過程中應採取加密措施
+
+15.
+下列何者「不」是個人隱私保護需涵蓋的範圍？​​​​​​​
+
+D.公司地址
+
+16.
+「留存日誌」是為了達成資訊安全的何種特性？
+
+
+B.不可否認性（Non-Repudiation)
+
+17.
+What information security law or standard aims at protecting stakeholders and the general public from accounting errors and fraudulent activities within organizations? 
+
+C.SOX
+
+18.
+The network team has well-established procedures to follow for creating new rules on the firewall. This includes having approval from a manager before implementing any new rules. While reviewing the firewall configuration, you notice a recently implemented rule but cannot locate manager approval for it. What would be a good step to have in the procedures for a situation like this? 
+
+D.Immediately roll back the firewall rule until a manager can approve it
+
+19.
+IP 之間的傳輸，屬 OSI 模型哪一層次？
+
+C網路層（Network Layer)
+
+20.
+在寄送電子郵件時，可以運用安全電子郵件簽章/密碼技術，以確保資 訊的哪些特性？
+
+(1) 機密性
+
+(2) 完整性
+
+(3) 可用性
+
+(4) 鑑別性
+
+
+B.(1), (2), (4)
+
+21.
+下列何者不屬於作業系統安全預防(Preventive)機制？
+
+D.定期檢視安全記錄檔（Log）
+
+22.
+安全的系統發展生命週期（Secure Software Development Life Cycle， SSDLC）意指發展一套安全系統的順序，用以開發完善安全的資訊系 統。以下哪個不是安全的系統發展生命週期階段？ 
+
+C.估價
+
+23.
+關於個人資料電子檔案管理，下列敘述何者不正確？ 
+
+B.臨時性之個人資料檔案存放於個人電腦、公用資料夾、公用 PC 之暫存資料夾中時，其存放天數不可限制
+
+24.
+在一個組織或安全網域內，相關的資訊系統須有一致性的同步時脈（鐘訊同步），其主要的目的為何？ 
+
+D.確保稽核日誌的準確性，以便紀錄事件與生成證據
+
+25.
+請問 DNS 放大攻擊，最屬於下列何種網路攻擊？
+
+D.阻斷服務攻擊
