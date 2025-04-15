@@ -1,48 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    body {
-        font-family: sans-serif;
-        margin: 10px;
-        padding: 0;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        word-break: break-word;
-    }
-    th, td {
-        padding: 8px;
-        border: 1px solid #ccc;
-        text-align: left;
-        font-size: 16px;
-    }
-    input, button, select {
-        font-size: 16px;
-        padding: 6px;
-        margin: 5px 0;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    @media (max-width: 600px) {
-        th, td {
-            font-size: 14px;
-        }
-        input, button, select {
-            font-size: 14px;
-        }
-    }
-    </style>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>題庫查詢系統</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background: #f0f2f5;
       font-family: 'Segoe UI', sans-serif;
+      margin: 10px;
+      padding: 0;
     }
     .container {
       max-width: 900px;
@@ -57,14 +25,35 @@
       border-left: 5px solid #0d6efd;
       margin-bottom: 15px;
       background: #f8f9fa;
+      padding: 15px;
     }
     .question {
       font-weight: bold;
       font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+    .options ul {
+      padding-left: 20px;
     }
     .answer {
       color: #198754;
       margin-top: 8px;
+    }
+    input, button, select {
+      font-size: 16px;
+      padding: 6px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+      .question,
+      .answer {
+        font-size: 14px;
+      }
+      input, button, select {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -76,11 +65,13 @@
   </div>
 
   <script>
+    // 全域變數，用來存放題庫資料
     let questions = [];
 
-
+    // 從 GitHub 上讀取題庫 .txt 檔案
     async function loadQuestions() {
-      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt'; 
+      // 請將下列 URL 替換為你 GitHub Repo 中 raw 檔案的實際 URL
+      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt';
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -88,25 +79,59 @@
         }
         const text = await response.text();
 
-        questions = text.split('\n').map(line => {
-          const parts = line.split('|');
-          if (parts.length === 2) {
-            return { question: parts[0].trim(), answer: parts[1].trim() };
-          } else {
-            return null; // 如果格式不正確，忽略該行
-          }
-        }).filter(item => item !== null); // 過濾掉無效的行
+        // 將內容依換行分割，並解析每一行
+        questions = text
+          .split('\n')
+          .filter(line => line.trim() !== '')  // 過濾空行
+          .map(line => {
+            // 每一行用 "|" 分隔
+            const parts = line.split('|').map(item => item.trim());
+            if (parts.length < 3) {
+              // 至少應該有 [題型]題目、至少 1 個選項、1 個答案
+              return null;
+            }
+            // 判斷題目型態
+            const typeIndicator = parts[0].substring(0, 3); // 應為 "[S]" 或 "[M]"
+            let type = '';
+            if (typeIndicator === '[S]') {
+              type = 'single';
+            } else if (typeIndicator === '[M]') {
+              type = 'multiple';
+            } else {
+              // 若未符合，直接回傳 null
+              return null;
+            }
+            // 移除題目前的 [S] 或 [M] 標記
+            const questionText = parts[0].replace(/^\[[SM]\]/, '').trim();
+            // 正確答案設為該行最後一個欄位
+            const answer = parts[parts.length - 1];
+            // 選項則介於題目與答案之間
+            const options = parts.slice(1, parts.length - 1);
+
+            return {
+              type,           // 'single' 或 'multiple'
+              question: questionText,
+              options,        // 陣列形式的選項
+              answer          // 正確答案字串，例如單選："A" 或多選："A,B"
+            };
+          })
+          .filter(item => item !== null); // 移除格式不正確的項目
+
+        // 預設顯示所有題目
+        search();
       } catch (error) {
         console.error(error);
         document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">載入題庫失敗！</div>';
       }
     }
 
+    // 搜尋題目並顯示結果
     function search() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
-      const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
       const container = document.getElementById('resultContainer');
       container.innerHTML = '';
+
+      const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
 
       if (results.length === 0 && keyword !== '') {
         container.innerHTML = '<div class="alert alert-warning">找不到相關題目。</div>';
@@ -114,17 +139,28 @@
       }
 
       results.forEach(q => {
+        // 產生卡片 div
         const card = document.createElement('div');
-        card.className = 'card p-3';
+        card.className = 'card';
+
+        // 題目型態標示
+        const typeText = q.type === 'single' ? '單選題' : '多選題';
+
+        // 建立內部 HTML：題型、題目、選項與正確答案
         card.innerHTML = `
-          <div class="question">📝 ${q.question}</div>
-          <div class="answer">✅ 答案：${q.answer}</div>
+          <div class="question"><b>題型：</b>${typeText}<br><b>題目：</b>${q.question}</div>
+          <div class="options"><b>選項：</b>
+            <ul>
+              ${q.options.map(opt => `<li>${opt}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="answer"><b>正確答案：</b>${q.answer}</div>
         `;
         container.appendChild(card);
       });
     }
 
-    // 頁面加載後載入題庫
+    // 頁面加載時讀取題庫
     window.onload = loadQuestions;
   </script>
 </body>
