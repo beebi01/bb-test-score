@@ -42,35 +42,42 @@
 <body>
   <div class="container">
     <h1 class="mb-4 text-center text-primary">題庫查詢系統</h1>
+
+    <!-- 讓用戶上傳 Word 檔案 -->
+    <input type="file" id="fileInput" class="form-control mb-3">
+    
     <input type="text" class="form-control mb-3" placeholder="輸入關鍵字查詢..." id="searchInput" oninput="search()">
+    
     <div id="resultContainer"></div>
   </div>
 
   <script>
     let records = [];
 
-    // 讀取外部純文字檔案
-    async function loadRecords() {
-      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt';
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("無法載入題庫檔案，請檢查 URL 是否正確");
-        }
-        const text = await response.text();
-
-        // 用正規表達式依空白行切割題目（包含 Windows 與 Unix 換行符）
-        records = text.split(/\r?\n\s*\r?\n/).filter(item => item.trim() !== '');
-        
-        // 預設顯示全部題目
-        search();
-      } catch (error) {
-        console.error(error);
-        document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">載入題庫失敗！</div>';
+    // 解析 Word 檔案並提取文本
+    function loadFile(event) {
+      const file = event.target.files[0];
+      if (file && file.name.endsWith('.docx')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const arrayBuffer = reader.result;
+          mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+            .then(function(result) {
+              records = result.value.split(/\r?\n\s*\r?\n/).filter(item => item.trim() !== '');
+              search();  // 預設顯示全部題目
+            })
+            .catch(function(err) {
+              console.error('Error reading DOCX file:', err);
+              document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">讀取檔案失敗！</div>';
+            });
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        alert('請上傳一個 Word 檔案（.docx）');
       }
     }
 
-    // 根據輸入的關鍵字搜尋題目並顯示結果
+    // 搜尋功能
     function search() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
       const container = document.getElementById('resultContainer');
@@ -89,13 +96,13 @@
       filteredRecords.forEach(record => {
         const div = document.createElement('div');
         div.className = 'record';
-        // 顯示原始文字內容（保留換行）
         div.textContent = record;
         container.appendChild(div);
       });
     }
 
-    window.onload = loadRecords;
+    // 綁定檔案上傳事件
+    document.getElementById('fileInput').addEventListener('change', loadFile);
   </script>
 </body>
 </html>
