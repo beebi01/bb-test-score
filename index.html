@@ -80,15 +80,27 @@
 
     // 讀取 GitHub 上的 .txt 檔案，並解析內容
     async function loadQuestions() {
-      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt'; // 更新為正確的 URL
-      const response = await fetch(url);
-      const text = await response.text();
+      const url = 'https://raw.githubusercontent.com/你的用戶名/你的repo名/main/questions_answers.txt'; // 請替換成你實際的 GitHub URL
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("無法載入題庫檔案，請檢查 URL 是否正確");
+        }
+        const text = await response.text();
 
-      // 假設每一題和答案之間用 | 分隔，每一題一行
-      questions = text.split('\n').map(line => {
-        const [question, answer] = line.split('|');
-        return { question: question.trim(), answer: answer.trim() };
-      });
+        // 假設每一題和答案之間用 '|' 分隔，每一題一行
+        questions = text.split('\n').map(line => {
+          const parts = line.split('|');
+          if (parts.length === 2) {
+            return { question: parts[0].trim(), answer: parts[1].trim() };
+          } else {
+            return null; // 如果格式不正確，忽略該行
+          }
+        }).filter(item => item !== null); // 過濾掉無效的行
+      } catch (error) {
+        console.error(error);
+        document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">載入題庫失敗！</div>';
+      }
     }
 
     function search() {
