@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+        font-family: sans-serif;
+        margin: 10px;
+        padding: 0;
+    }
+    table {
+        width: 100%%;
+        border-collapse: collapse;
+        word-break: break-word;
+    }
+    th, td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        text-align: left;
+        font-size: 16px;
+    }
+    input, button, select {
+        font-size: 16px;
+        padding: 6px;
+        margin: 5px 0;
+        width: 100%%;
+        box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+        th, td {
+            font-size: 14px;
+        }
+        input, button, select {
+            font-size: 14px;
+        }
+    }
+    </style>
+    
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>題庫查詢系統</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background: #f0f2f5;
       font-family: 'Segoe UI', sans-serif;
-      margin: 10px;
-      padding: 0;
     }
     .container {
       max-width: 900px;
@@ -20,89 +52,79 @@
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .record {
-      border: 1px solid #ccc;
-      padding: 15px;
+    .card {
+      border: none;
+      border-left: 5px solid #0d6efd;
       margin-bottom: 15px;
       background: #f8f9fa;
-      white-space: pre-wrap; /* 保留換行 */
     }
-    .alert {
-      margin-top: 15px;
+    .question {
+      font-weight: bold;
+      font-size: 1.1em;
     }
-    input {
-      font-size: 16px;
-      padding: 6px;
-      margin: 5px 0;
-      width: 100%;
-      box-sizing: border-box;
+    .answer {
+      color: #198754;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="mb-4 text-center text-primary">題庫查詢系統</h1>
-
-    <!-- 讓用戶上傳 Word 檔案 -->
-    <input type="file" id="fileInput" class="form-control mb-3">
-    
     <input type="text" class="form-control mb-3" placeholder="輸入關鍵字查詢..." id="searchInput" oninput="search()">
-    
     <div id="resultContainer"></div>
   </div>
 
   <script>
-    let records = [];
+    const questions = [
+  { question: "If you can correctly answer these CramSaver questions, save time by skimming the Exam Alerts in this section and then completing the Cram Quiz. If you are in any doubt at all, read everything in this chapter. 1. Which of the following web pages would be most likely to give you information about the operating system and web server a website is using?", answer: "D.netcraft.com" },
+  { question: "When examining an email header, what does the References section denote?", answer: "C.The Message ID that is being replied to" },
+  { question: "Carol is trying to find information about a specific IP address in Belgium. Which registry should she check?", answer: "A.RIPE NCC" },
+  { question: "Which of the following Google search strings will find documents in the URL that contains the keyword given?", answer: "A.inurl" },
+  { question: "Which of the following modes for InSpy specifically searches for employees of a company on LinkedIn?", answer: "C.EmpSpy" },
+  { question: "You have been asked to perform a penetration test on a company. You have only been given the company domain name and gateway IP address. What type of test is this?", answer: "D.Black box" },
+  { question: "Clarence is performing an Nmap scan of a database server, using nmap -sR -oX - T3 192.168.1.19. What is this scan?", answer: "B.An RPC scan with normal speed and XML output" },
+  { question: "What is the TCP window size for Windows 10?", answer: "D.65535" },
+  { question: "Jerrod is running an hping v3 scan on a target machine. He wants to send TCP SYN packets every 3 seconds to port 445 on host 10.10.10.15. Which command will do that?", answer: "C.hping3 10.10.10.15 -S -V -p 445 -i 3" },
+  { question: "Which of the following nmap commands performs a SYN scan on the target 192.168.1.10 using aggressive speed?", answer: "C.nmap -sS -T4 192.168.1.10" },
+  { question: "What type of scan does hping3 www.chuckeasttom.com -a 182.10.10.10 perform?", answer: "B.It performs an hping scan of www.chuckeasttom.com, spoofing the IP address 182.10.10.10." },
+  { question: "What will you accomplish by changing the ServerSignature line to ServerSignature Off in the httpd.conf file?", answer: "A.Turn off banner information in Apache." },
+  { question: "_____ 是想要攻擊電腦，但缺乏所需知識的人。​​​​​​​", answer: "A.腳本小子" },
+  { question: "關於機敏性（Confidentiality），下列敘述何者正確？", answer: "B.資訊於儲存、傳輸過程中應採取加密措施" },
+  { question: "下列何者「不」是個人隱私保護需涵蓋的範圍？​​​​​​​", answer: "D.公司地址" },
+  { question: "「留存日誌」是為了達成資訊安全的何種特性？", answer: "B.不可否認性（Non-Repudiation)" },
+  { question: "What information security law or standard aims at protecting stakeholders and the general public from accounting errors and fraudulent activities within organizations?", answer: "C.SOX" },
+  { question: "The network team has well-established procedures to follow for creating new rules on the firewall. This includes having approval from a manager before implementing any new rules. While reviewing the firewall configuration, you notice a recently implemented rule but cannot locate manager approval for it. What would be a good step to have in the procedures for a situation like this?", answer: "D.Immediately roll back the firewall rule until a manager can approve it" },
+  { question: "IP 之間的傳輸，屬 OSI 模型哪一層次？", answer: "C網路層（Network Layer)" },
+  { question: "在寄送電子郵件時，可以運用安全電子郵件簽章/密碼技術，以確保資 訊的哪些特性？  (1) 機密性  (2) 完整性  (3) 可用性  (4) 鑑別性", answer: "B.(1), (2), (4)" },
+  { question: "下列何者不屬於作業系統安全預防(Preventive)機制？", answer: "D.定期檢視安全記錄檔（Log）" },
+  { question: "安全的系統發展生命週期（Secure Software Development Life Cycle， SSDLC）意指發展一套安全系統的順序，用以開發完善安全的資訊系 統。以下哪個不是安全的系統發展生命週期階段？", answer: "C.估價" },
+  { question: "關於個人資料電子檔案管理，下列敘述何者不正確？", answer: "B.臨時性之個人資料檔案存放於個人電腦、公用資料夾、公用 PC 之暫存資料夾中時，其存放天數不可限制" },
+  { question: "在一個組織或安全網域內，相關的資訊系統須有一致性的同步時脈（鐘訊同步），其主要的目的為何？", answer: "D.確保稽核日誌的準確性，以便紀錄事件與生成證據" },
+  { question: "請問 DNS 放大攻擊，最屬於下列何種網路攻擊？", answer: "D.阻斷服務攻擊" },
+];
 
-    // 解析 Word 檔案並提取文本
-    function loadFile(event) {
-      const file = event.target.files[0];
-      if (file && file.name.endsWith('.docx')) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const arrayBuffer = reader.result;
-          mammoth.extractRawText({ arrayBuffer: arrayBuffer })
-            .then(function(result) {
-              records = result.value.split(/\r?\n\s*\r?\n/).filter(item => item.trim() !== '');
-              search();  // 預設顯示全部題目
-            })
-            .catch(function(err) {
-              console.error('Error reading DOCX file:', err);
-              document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">讀取檔案失敗！</div>';
-            });
-        };
-        reader.readAsArrayBuffer(file);
-      } else {
-        alert('請上傳一個 Word 檔案（.docx）');
-      }
-    }
-
-    // 搜尋功能
     function search() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
+      const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
       const container = document.getElementById('resultContainer');
       container.innerHTML = '';
-      
-      let filteredRecords = records;
-      if (keyword !== '') {
-        filteredRecords = records.filter(record => record.toLowerCase().includes(keyword));
-      }
-      
-      if (filteredRecords.length === 0) {
+
+      if (results.length === 0 && keyword !== '') {
         container.innerHTML = '<div class="alert alert-warning">找不到相關題目。</div>';
         return;
       }
-      
-      filteredRecords.forEach(record => {
-        const div = document.createElement('div');
-        div.className = 'record';
-        div.textContent = record;
-        container.appendChild(div);
+
+      results.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'card p-3';
+        card.innerHTML = `
+          <div class="question">📝 ${q.question}</div>
+          <div class="answer">✅ 答案：${q.answer}</div>
+        `;
+        container.appendChild(card);
       });
     }
-
-    // 綁定檔案上傳事件
-    document.getElementById('fileInput').addEventListener('change', loadFile);
   </script>
 </body>
 </html>
