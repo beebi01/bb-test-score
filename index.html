@@ -78,9 +78,9 @@
   <script>
     let questions = [];
 
-    // 讀取 GitHub 上的 .txt 檔案，並解析內容
+
     async function loadQuestions() {
-      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/uestions_answers.txt'; // 請替換成你實際的 GitHub URL
+      const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt'; 
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -88,7 +88,6 @@
         }
         const text = await response.text();
 
-        // 假設每一題和答案之間用 '|' 分隔，每一題一行
         questions = text.split('\n').map(line => {
           const parts = line.split('|');
           if (parts.length === 2) {
