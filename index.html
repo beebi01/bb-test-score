@@ -20,37 +20,22 @@
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .card {
-      border: none;
-      border-left: 5px solid #0d6efd;
+    .record {
+      border: 1px solid #ccc;
+      padding: 15px;
       margin-bottom: 15px;
       background: #f8f9fa;
-      padding: 15px;
+      white-space: pre-wrap; /* 保留換行 */
     }
-    .question {
-      font-weight: bold;
-      font-size: 1.1em;
-      margin-bottom: 8px;
+    .alert {
+      margin-top: 15px;
     }
-    .answer {
-      color: #198754;
-      margin-top: 8px;
-    }
-    input, button, select {
+    input {
       font-size: 16px;
       padding: 6px;
       margin: 5px 0;
       width: 100%;
       box-sizing: border-box;
-    }
-    @media (max-width: 600px) {
-      .question,
-      .answer {
-        font-size: 14px;
-      }
-      input, button, select {
-        font-size: 14px;
-      }
     }
   </style>
 </head>
@@ -62,10 +47,10 @@
   </div>
 
   <script>
-    let questions = [];
+    let records = [];
 
-    // 從 GitHub 上讀取題庫 .txt 檔案（請確認此 URL 正確）
-    async function loadQuestions() {
+    // 讀取外部純文字檔案
+    async function loadRecords() {
       const url = 'https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions_answers.txt';
       try {
         const response = await fetch(url);
@@ -73,46 +58,44 @@
           throw new Error("無法載入題庫檔案，請檢查 URL 是否正確");
         }
         const text = await response.text();
-        // 以換行分割後，每一行以 "|" 分隔題目與答案
-        questions = text.split('\n').map(line => {
-          const parts = line.split('|');
-          if (parts.length === 2) {
-            return { question: parts[0].trim(), answer: parts[1].trim() };
-          } else {
-            return null;
-          }
-        }).filter(item => item !== null);
+
+        // 用正規表達式依空白行切割題目（包含 Windows 與 Unix 換行符）
+        records = text.split(/\r?\n\s*\r?\n/).filter(item => item.trim() !== '');
+        
+        // 預設顯示全部題目
+        search();
       } catch (error) {
         console.error(error);
         document.getElementById('resultContainer').innerHTML = '<div class="alert alert-danger">載入題庫失敗！</div>';
       }
     }
 
-    // 搜尋題目並動態顯示結果
+    // 根據輸入的關鍵字搜尋題目並顯示結果
     function search() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
       const container = document.getElementById('resultContainer');
       container.innerHTML = '';
-      const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
       
-      if (results.length === 0 && keyword !== '') {
+      let filteredRecords = records;
+      if (keyword !== '') {
+        filteredRecords = records.filter(record => record.toLowerCase().includes(keyword));
+      }
+      
+      if (filteredRecords.length === 0) {
         container.innerHTML = '<div class="alert alert-warning">找不到相關題目。</div>';
         return;
       }
       
-      results.forEach(q => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="question">📝 ${q.question}</div>
-          <div class="answer">✅ 答案：${q.answer}</div>
-        `;
-        container.appendChild(card);
+      filteredRecords.forEach(record => {
+        const div = document.createElement('div');
+        div.className = 'record';
+        // 顯示原始文字內容（保留換行）
+        div.textContent = record;
+        container.appendChild(div);
       });
     }
 
-    // 頁面加載時讀取題庫
-    window.onload = loadQuestions;
+    window.onload = loadRecords;
   </script>
 </body>
 </html>
