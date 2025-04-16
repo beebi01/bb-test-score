@@ -131,8 +131,6 @@
     "question": "關於電子郵件安全威脅的敘述，下列何者錯誤？",
     "answer": "D 電子郵件的安全以詐騙為主，未曾發現針對技術性弱點的攻擊"
   }
-]
-[
   {
     "question": "Gerald is performing a vulnerability scan that sniffs network traffic to find information. He is using Wireshark. What type of scan is he performing?",
     "answer": "B Passive assessment"
@@ -197,8 +195,6 @@
     "question": "What would you use credentials for in a vulnerability scanner?",
     "answer": "C Scanning for local vulnerabilities"
   }
-]
-[
   {
     "question": "是專門用來阻擋網路入侵的硬體裝置？",
     "answer": "C 硬體防火牆"
