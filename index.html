@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="footer">
-    <p>&copy; y.b <br/>!禁止外流!</a></p>
+    <p>&copy; y.b <br/>!禁止外流! 注意多選題 </a></p>
     </div>
     <div class="container">
         <h1 class="mb-4 text-center text-primary">懂得都懂</h1>
@@ -44,7 +44,7 @@
   { question: "You want to run a scan against a target network. You’re concerned about it being a reliable scan, with legitimate results, but want to take steps to ensure it is as stealthy as possible. Which scan type is best in this situation?", answer: "nmap -sS targetIPaddress" },
   { question: "What is the second step in the TCP three-way handshake?", answer: "SYN/ACK" },
   { question: "Nmap is a powerful scanning and enumeration tool. What does the following nmap command attempt to accomplish? nmap -sA -T4 192.168.15.0/24", answer: "A parallel, fast ACK scan of a Class C subnet" },
-  { question: "You are examining a packet capture of all traffic from a host on the subnet. The host sends a segment with the SYN flag set in order to set up a TCP communications channel. The destination port is 80, and the sequence number is set to 10. Which of the following statements are not true regarding this communications channel? (Choose all that apply.) (多選題兩個答案)   A The host will be attempting to retrieve an HTML file.", answer: "The packet returned in answer to this SYN request will acknowledge the sequence number by returning 10." },
+  { question: "You are examining a packet capture of all traffic from a host on the subnet. The host sends a segment with the SYN flag set in order to set up a TCP communications channel. The destination port is 80, and the sequence number is set to 10. Which of the following statements are not true regarding this communications channel? (Choose all that apply.) (多選題兩個答案)", answer:"A.The host will be attempting to retrieve an HTML file. <br/> ? .The packet returned in answer to this SYN request will acknowledge the sequence number by returning 10." },
   { question: "Which TCP flag instructs the recipient to ignore buffering constraints and immediately send all data?", answer: "PSH" },
   { question: "You receive a RST-ACK from a port during a SYN scan. What is the state of the port?", answer: "Closed" },
   { question: "You have compromised a server on a network and successfully opened a shell. You aimed to identify all operating systems running on the network. However, as you attempt to fingerprint all machines in the network using the nmap syntax below, it is not going through. invictus@victim_server.~$ nmap -T4 -O 10.10.0.0/24 TCP/IP fingerprinting (for OS scan) xxxxxxx xxxxxx xxxxxxxxx. QUITTING! What seems to be wrong?", answer: "OS Scan requires root privileges." },
@@ -102,7 +102,7 @@
   { question: "使用者端無法連線到公司網頁伺服器。您發現有大量的半開放式TCP連線至伺服器。 請問您該怎麼做?", answer: "採取措施阻止TCP SYN洪水攻擊。" },
   { question: "You are running multiple enumeration scans as part of an assessment. In one particular scan, you have nmap send an initial FIN packet followed immediately by an ACK packet. Which of the following best describes the type of scan you are running?", answer: "TCP Maimon" },
   { question: "You are examining traffic to see if there are any network-enabled printers on the subnet. Which of the following ports should you be monitoring for?", answer: "631" },
-  { question: "A team member is using nmap and asks about the “scripting engine” in the tool. Which option switches can be used to invoke the nmap scripting engine? (Choose two.)(多選題兩個答案)  A --script", answer: "-sC" },
+  { question: "A team member is using nmap and asks about the “scripting engine” in the tool. Which option switches can be used to invoke the nmap scripting engine? (Choose two.)(多選題兩個答案) ", answer: "A.--script<br/>D.-sC" },
   { question: "You want to display active and inactive services on a Windows Server machine. Which of the following commands best performs this service?", answer: "sc query state= all" },
   { question: "What is being attempted with the following command? nc -u -v -w2 192.168.1.100 1-1024", answer: "A UDP scan of ports 1–1024 on a single address" },
   { question: "You are told to monitor a packet capture for any attempted DNS zone transfer. Which port should you focus your search on?", answer: "TCP 53" },
@@ -125,7 +125,7 @@
   { question: "Mohanned is performing an ICMP scan on a web server. The server network is reachable, but the host IP address is not reachable. What response will he get back?", answer: "Message Type 3, Code 1" },
   { question: "When using Linux, how do you get ping to keep sending packets until you manually stop it?", answer: "That is the default in Linux." },
   { question: "You are trying to enumerate a Linux web server. You would like to know what users are logged on to the machine remotely or locally. What command should you use?", answer: "rusers" },
-  { question: "Gideon is trying to perform an SNMP scan. What ports should he scan? (Choose all that apply.)     (多選題兩個答案)  A 161", answer: "162" },
+  { question: "Gideon is trying to perform an SNMP scan. What ports should he scan? (Choose all that apply.)     (多選題兩個答案)", answer: "A.161<br/>D.162" },
   { question: "You are using Netcat to connect to an email server. Which of the following commands should you use?", answer: "nc mail.server.net 25" },
   { question: "When using SNMP, what is MIB?", answer: "Management Information Base" },
   { question: "You have been asked to perform a penetration test of ABC bank. One of the early steps is to map out the network. You are using your Linux laptop and wish to find out the primary source for NTP. What command should you use?", answer: "ntptrace" },
