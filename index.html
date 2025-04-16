@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON in HTML</title>
+  <meta charset="UTF-8">
+  <title>題庫展示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .question {
+      margin-bottom: 1em;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .answer {
+      color: #008000;
+    }
+  </style>
 </head>
 <body>
+  <h1>題庫展示</h1>
+  <div id="question-container"></div>
 
-    <h1>Example of JSON in HTML</h1>
+  <!-- 這裡嵌入 JSON 資料 -->
+  <script>
+    const questions = [
+      {
+        "question": "Gerald is performing a vulnerability scan that sniffs network traffic to find information. He is using Wireshark. What type of scan is he performing?",
+        "answer": "B Passive assessment"
+      },
+      {
+        "question": "Pedro is working with vulnerability management for his company. He is using a format that has only 9999 unique identifiers per year. What is Pedro using?",
+        "answer": "D CVE"
+      },
+      {
+        "question": "Gianna is looking for a vulnerability scanner that can scan TCP and UDP services as well as vulnerabilities. Furthermore, this tool must be able to scan for CVE and CERT advisories. What tool best fits these requirements?",
+        "answer": "B SAINT"
+      },
+      {
+        "question": "____ is a list maintained by the Mitre Corporation.",
+        "answer": "C CVE"
+      },
+      {
+        "question": "In CVSS, the Access Vector metric can be what four values?",
+        "answer": "A N, A, L, P"
+      }
+    ];
 
-    <div id="result"></div>
+    const container = document.getElementById('question-container');
 
-    <script>
-        // 定義 JSON 資料
-        const jsonData = [
-            {
-                "question": "Your team is hired to test a business named Matt’s Bait ’n’ Tackle Shop (domain name mattsBTshop.com). A team member runs the following command: metagoofil -d mattsBTshop.com -t doc,docx -l 50 -n 20 -f results.html. Which of the following best describes what the team member is attempting to do?",
-                "answer": "C. Extracting metadata info from Microsoft Word documents found in mattsBTshop.com, outputting results in an HTML file"
-            },
-            {
-                "question": "You have a zombie system ready and begin an IDLE scan. As the scan moves along, you notice that fragment identification numbers gleaned from the zombie machine are incrementing randomly. What does this mean?",
-                "answer": "A. Your IDLE scan results will not be useful to you."
-            },
-            {
-                "question": "You want to perform a ping sweep of a subnet within your target organization. Which of the following nmap command lines is your best option?",
-                "answer": "C. nmap -sP 192.168.1.0/24"
-            }
-        ];
-
-        // 顯示 JSON 資料
-        const resultDiv = document.getElementById("result");
-
-        jsonData.forEach(item => {
-            const question = document.createElement("p");
-            question.textContent = "Q: " + item.question;
-            resultDiv.appendChild(question);
-
-            const answer = document.createElement("p");
-            answer.textContent = "A: " + item.answer;
-            resultDiv.appendChild(answer);
-        });
-    </script>
-
+    questions.forEach((q, index) => {
+      const div = document.createElement('div');
+      div.className = 'question';
+      div.innerHTML = `
+        <p><strong>第 ${index + 1} 題：</strong>${q.question}</p>
+        <p class="answer"><strong>答案：</strong>${q.answer}</p>
+      `;
+      container.appendChild(div);
+    });
+  </script>
 </body>
 </html>
