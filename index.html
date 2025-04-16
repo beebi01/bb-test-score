@@ -58,6 +58,7 @@
 
   <script>
     let questions = [];
+    // 使用 CORS Anywhere 代理服務來繞過 CORS 問題
     const jsonURL = "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions.json";
 
     fetch(jsonURL)
