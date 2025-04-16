@@ -83,7 +83,12 @@
 
       // 從 GitHub Pages 加載題庫資料
       fetch(jsonURL)
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("無法載入資料");
+          }
+          return response.json();
+        })
         .then(data => {
           const questions = data.questions || []; // 假設 JSON 中有 questions 屬性
 
