@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+        font-family: sans-serif;
+        margin: 10px;
+        padding: 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        word-break: break-word;
+    }
+    th, td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        text-align: left;
+        font-size: 16px;
+    }
+    input, button, select {
+        font-size: 16px;
+        padding: 6px;
+        margin: 5px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+        th, td {
+            font-size: 14px;
+        }
+        input, button, select {
+            font-size: 14px;
+        }
+    }
+    </style>
+    
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>題庫查詢系統</title>
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     body {
       background: #f0f2f5;
@@ -35,67 +66,50 @@
       color: #198754;
       margin-top: 8px;
     }
-    input {
-      font-size: 16px;
-      padding: 6px;
-      margin-bottom: 20px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    @media (max-width: 600px) {
-      .question, .answer {
-        font-size: 14px;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="mb-4 text-center text-primary">題庫查詢系統</h1>
-    <input type="text" class="form-control" placeholder="輸入關鍵字查詢..." id="searchInput" oninput="search()">
+    <input type="text" class="form-control mb-3" placeholder="輸入關鍵字查詢..." id="searchInput" oninput="search()">
     <div id="resultContainer"></div>
   </div>
 
   <script>
-    let questions = [];
-    // 使用 CORS Anywhere 代理服務來繞過 CORS 問題
-    const jsonURL = "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/beebi01/bb-test-score/main/questions.json";
-
-    fetch(jsonURL)
-      .then(response => {
-        if (!response.ok) throw new Error("網路錯誤");
-        return response.json();
-      })
-      .then(data => {
-        questions = data;
-        search();
-      })
-      .catch(error => {
-        console.error("載入題庫失敗：", error);
-        document.getElementById('resultContainer').innerHTML =
-          '<div class="alert alert-danger">❌ 題庫載入失敗，請稍後再試。</div>';
-      });
+    const jsonURL = "https://beebi01.github.io/bb-test-score/questions.json"; // 請替換為你的 GitHub Pages 網址
 
     function search() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
-      const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
-      const container = document.getElementById('resultContainer');
-      container.innerHTML = '';
 
-      if (results.length === 0 && keyword !== '') {
-        container.innerHTML = '<div class="alert alert-warning">⚠️ 找不到相關題目。</div>';
-        return;
-      }
+      // 從 GitHub Pages 加載題庫資料
+      fetch(jsonURL)
+        .then(response => response.json())
+        .then(data => {
+          const questions = data.questions || []; // 假設 JSON 中有 questions 屬性
 
-      results.forEach(q => {
-        const card = document.createElement('div');
-        card.className = 'card p-3';
-        card.innerHTML = `
-          <div class="question">📝 ${q.question}</div>
-          <div class="answer">✅ 答案：${q.answer}</div>
-        `;
-        container.appendChild(card);
-      });
+          const results = questions.filter(q => q.question.toLowerCase().includes(keyword));
+          const container = document.getElementById('resultContainer');
+          container.innerHTML = '';
+
+          if (results.length === 0 && keyword !== '') {
+            container.innerHTML = '<div class="alert alert-warning">⚠️ 找不到相關題目。</div>';
+            return;
+          }
+
+          results.forEach(q => {
+            const card = document.createElement('div');
+            card.className = 'card p-3';
+            card.innerHTML = `
+              <div class="question">📝 ${q.question}</div>
+              <div class="answer">✅ 答案：${q.answer}</div>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error("載入題庫失敗：", error);
+          alert("載入題庫失敗，請稍後再試");
+        });
     }
   </script>
 </body>
