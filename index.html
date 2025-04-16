@@ -172,7 +172,25 @@
   { question: "您正在監視Syslog伺服器並觀察到DNS伺服器正在傳送警告嚴重性的訊息這些訊息表示DNS伺服器的作業發生什麼情況?", answer: "C. 如果問題未修正,則存在將來會導致錯誤的情況。" },
   { question: "有數名員工抱怨公司内部網路網站不再接受他們的登入资訊。您是網管人員試圖使用URL進行連線,並注意到網站上有一些拼寫錯誤。您使用IP 位址線時,網站運作正常。請問您該怎麼做?", answer: "C. 驗證本地DNS伺服器中網站進入的準確性。" },
   { question: "下列哪一個指令會顯示設定的DNS伺服器資訊和URL的IP位址解析？", answer: "C. Nslookup" },
-  { question: "使用者端無法連線到公司網頁伺服器。您發現有大量的半開放式TCP連線至伺服器。請問您該怎麼做?", answer: "D. 採取措施阻止TCP SYN洪水攻擊。" }
+  { question: "使用者端無法連線到公司網頁伺服器。您發現有大量的半開放式TCP連線至伺服器。請問您該怎麼做?", answer: "D. 採取措施阻止TCP SYN洪水攻擊。" },
+  { question: "You are running multiple enumeration scans as part of an assessment. In one particular scan, you have nmap send an initial FIN packet followed immediately by an ACK packet. Which of the following best describes the type of scan you are running?", answer: "B. TCP Maimon" },
+  { question: "You are examining traffic to see if there are any network-enabled printers on the subnet. Which of the following ports should you be monitoring for?", answer: "E. 631" },
+  { question: "A team member is using nmap and asks about the “scripting engine” in the tool. Which option switches can be used to invoke the nmap scripting engine? (Choose two.)", answer: "A. --script, D. -sC" },
+  { question: "You want to display active and inactive services on a Windows Server machine. Which of the following commands best performs this service?", answer: "D. sc query state= all" },
+  { question: "What is being attempted with the following command? nc -u -v -w2 192.168.1.100 1-1024", answer: "C. A UDP scan of ports 1–1024 on a single address" },
+  { question: "You are told to monitor a packet capture for any attempted DNS zone transfer. Which port should you focus your search on?", answer: "B. TCP 53" },
+  { question: "A team member issues the nbtstat.exe -c command. Which of the following best represents the intent of the command?", answer: "B. It displays the NetBIOS name cache." },
+  { question: "Consider the ports shown in the nmap output returned on an IP scanned during footprinting: PORT STATE SERVICE 21/tcp open ftp 23/tcp open telnet 80/tcp open http 139/tcp open netbios-ssn 515/tcp open 631/tcp open ipp 9100/tcp open MAC Address: 01:2A:48:0B:AA:81 Which of the following is true regarding the output?", answer: "B. The host is most likely a printer or has a printer installed." },
+  { question: "In which scanning method would an attacker send INIT chunks to targets and await responses?", answer: "A. SCTP INIT scan" },
+  { question: "A penetration tester is examining the following NMAP result: Starting NMAP 5.21 at 2022-07-08 11:06 NMAP scan report for 172.16.40.65 Host is up (1.00s latency). Not shown: 993 closed ports PORT STATE SERVICE 21/tcp open ftp 23/tcp open telnet 80/tcp open http 139/tcp open netbios-ssn 515/tcp open 631/tcp open ipp 9100/tcp open MAC Address: 00:00:48:0D:EE:8 Which of the following is a true statement?", answer: "A. The host is likely a printer." },
+  { question: "下列何者那一種磁碟陣列所追求的是最大安全性？", answer: "A. RAID 0" },
+  { question: "Which of the following tools is used to analyze the files produced by several packet-capture programs such as tcpdump, WinDump, Wireshark, and EtherPeek?", answer: "A. tcptrace" },
+  { question: "You have successfully comprised a server having an IP address of 10.10.0.5. You would like to enumerate all machines in the same network quickly. What is the best Nmap command you will use?", answer: "B. nmap -T4 -F 10.10.0.0/24" },
+  { question: "You are programming a buffer overflow exploit and you want to create a NOP sled of 200 bytes in the program exploit.c What is the hexadecimal value of NOP instruction?", answer: "D. 0x90" },
+  { question: "You are an ethical hacker tasked with conducting an enumeration of a company's network. Given a Windows system with NetBIOS enabled, port 139 open, and file and printer sharing active, you are about to run some nbtstat commands to enumerate NetBIOS names. The company uses |Pv6 for its network. Which of the following actions should you take next?", answer: "D. Switch to an enumeration tool that supports IPv6" },
+  { question: "Harris is attempting to identify the OS running on his target machine. He inspected the initial TTL in the IP header and the related TCP window size and obtained the following results: TTL: 64 Window Size: 5840 What is the OS running on the target machine?", answer: "D. Linux O" },
+  { question: "Bill is a network administrator. He wants to eliminate unencrypted traffic inside his company's network. He decides to set up a SPAN port and capture all traffic to the data center. He immediately discovers unencrypted traffic in port UDP 161. What protocol is this port using and how can he secure that traffic?", answer: "B. SNMP and he should change it to SNMP V3" },
+  { question: "公司對外的網站放置於下列何處？", answer: "A. DMZ（Demilitarized Zone）" }
 ];
 
     function search() {
