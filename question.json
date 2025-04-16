@@ -1,0 +1,290 @@
+[
+  {
+    "question": "Your team is hired to test a business named Matt’s Bait ’n’ Tackle Shop (domain name mattsBTshop.com). A team member runs the following command:metagoofil -d mattsBTshop.com -t doc,docx -l 50 -n 20 -f results.html. Which of the following best describes what the team member is attempting to do?",
+    "answer": "C Extracting metadata info from Microsoft Word documents found in mattsBTshop.com, outputting results in an HTML file"
+  },
+  {
+    "question": "You have a zombie system ready and begin an IDLE scan. As the scan moves along, you notice that fragment identification numbers gleaned from the zombie machine are incrementing randomly. What does this mean?",
+    "answer": "A Your IDLE scan results will not be useful to you."
+  },
+  {
+    "question": "You want to perform a ping sweep of a subnet within your target organization. Which of the following nmap command lines is your best option?",
+    "answer": "C nmap -sP 192.168.1.0/24"
+  },
+  {
+    "question": "A pen tester is performing banner grabbing and executes the following command: $ nmap -sV host.domain.com -p 80. Which of the following is a true statement?",
+    "answer": "B The pen tester was successful in banner grabbing."
+  },
+  {
+    "question": "A colleague enters the following command: root@mybox: # hping3 -A 192.168.2.x -p 80. What is being attempted here?",
+    "answer": "B An ACK scan using hping3 on port 80 for a group of addresses"
+  },
+  {
+    "question": "You are examining traffic between hosts and note the following exchange... Which of the following statements are true regarding this traffic?",
+    "answer": "B It appears to be part of an XMAS scan., D It appears port 4083 is closed."
+  },
+  {
+    "question": "You are examining traffic and notice an ICMP Type 3, Code 13 response. What does this normally indicate?",
+    "answer": "D A firewall is prohibiting connection."
+  },
+  {
+    "question": "Which port-scanning method presents the most risk of discovery but provides the most reliable results?",
+    "answer": "A Full-connect"
+  },
+  {
+    "question": "A ping sweep was done, but two machines didn’t respond. What is the most likely reason?",
+    "answer": "B ICMP is being filtered."
+  },
+  {
+    "question": "Which command on Linux lists processes and their UIDs reliably?",
+    "answer": "D lsof"
+  },
+  {
+    "question": "iptables -t nat -L was entered. What does this mean?",
+    "answer": "B The administrator is configuring IP masquerading."
+  },
+  {
+    "question": "You perform an Nmap scan and get results on 192.168.15.12. How can you better identify the OS?",
+    "answer": "D Attempt banner grabbing."
+  },
+  {
+    "question": "You want a reliable yet stealthy scan. What’s the best option?",
+    "answer": "C nmap -sS targetIPaddress"
+  },
+  {
+    "question": "What is the second step in the TCP three-way handshake?",
+    "answer": "C SYN/ACK"
+  },
+  {
+    "question": "What does this Nmap command do? nmap -sA -T4 192.168.15.0/24",
+    "answer": "D A parallel, fast ACK scan of a Class C subnet"
+  },
+  {
+    "question": "You observe a SYN packet to port 80 with sequence number 10. Which statements are not true?",
+    "answer": "A The host will be attempting to retrieve an HTML file., D The packet returned in answer to this SYN request will acknowledge the sequence number by returning 10."
+  },
+  {
+    "question": "Which TCP flag instructs the recipient to ignore buffering constraints and immediately send all data?",
+    "answer": "B PSH"
+  },
+  {
+    "question": "You receive a RST-ACK from a port during a SYN scan. What is the state of the port?",
+    "answer": "B Closed"
+  },
+  {
+    "question": "Why does this Nmap OS fingerprinting command fail? nmap -T4 -O 10.10.0.0/24",
+    "answer": "D OS Scan requires root privileges."
+  },
+  {
+    "question": "Firewalk scanning result shows TCP port 23 with TTL exceeded. What does this mean?",
+    "answer": "C The scan on port 23 passed through the filtering device. This indicates that port 23 was not blocked at the firewall"
+  },
+  {
+    "question": "An attacker uses nmap -sX host.domain.com. Which flags are set?",
+    "answer": "B This is Xmas scan. URG, PUSH and FIN are set."
+  },
+  {
+    "question": "What is the purpose of using '-si' with Nmap?",
+    "answer": "C Conduct IDLE scan"
+  },
+  {
+    "question": "What type of network tool can analyze packet traffic saved in a PCAP file?",
+    "answer": "A Protocol analyzer"
+  },
+  {
+    "question": "Nathan floods ARP caches using Macof. What happens if successful?",
+    "answer": "A The switches will drop into hub mode if the ARP cache is successfully flooded."
+  },
+  {
+    "question": "Which technique provides the most system security information?",
+    "answer": "D Port scanning, banner grabbing service identification"
+  },
+  {
+    "question": "What is the fastest type of password-cracking attack in this Windows Domain scenario?",
+    "answer": "D Hybrid Attack"
+  },
+  {
+    "question": "What enumeration technique did Henry use to find visited sites via cached DNS?",
+    "answer": "B DNS cache snooping"
+  },
+  {
+    "question": "What’s the first step in a DNS cache poisoning (spoofing) attack?",
+    "answer": "B The attacker makes a request to the DNS resolver."
+  },
+  {
+    "question": "How can an attacker encrypt Netcat traffic during transmission?",
+    "answer": "D Use cryptcat instead of netcat"
+  },
+  {
+    "question": "封包 Protocol 欄位為 1，代表哪一種協定？",
+    "answer": "C ICMP"
+  },
+  {
+    "question": "有關 ARP 的正確敘述是？",
+    "answer": "A 以 IP 位址查詢其相對應之媒體存取控制（MAC）位址"
+  },
+  {
+    "question": "哪一種防範中間人攻擊的機制已被建議棄用？",
+    "answer": "B 在 HTTPS 或 SMTPS 使用 SSLv2 協定來保護傳輸資料，避免被看到明文內容"
+  },
+  {
+    "question": "關於電子郵件安全威脅的敘述，下列何者錯誤？",
+    "answer": "D 電子郵件的安全以詐騙為主，未曾發現針對技術性弱點的攻擊"
+  }
+]
+[
+  {
+    "question": "Gerald is performing a vulnerability scan that sniffs network traffic to find information. He is using Wireshark. What type of scan is he performing?",
+    "answer": "B Passive assessment"
+  },
+  {
+    "question": "Pedro is working with vulnerability management for his company. He is using a format that has only 9999 unique identifiers per year. What is Pedro using?",
+    "answer": "D CVE"
+  },
+  {
+    "question": "Gianna is looking for a vulnerability scanner that can scan TCP and UDP services as well as vulnerabilities. Furthermore, this tool must be able to scan for CVE and CERT advisories. What tool best fits these requirements?",
+    "answer": "B SAINT"
+  },
+  {
+    "question": "____ is a list maintained by the Mitre Corporation.",
+    "answer": "C CVE"
+  },
+  {
+    "question": "In CVSS, the Access Vector metric can be what four values?",
+    "answer": "A N, A, L, P"
+  },
+  {
+    "question": "Victoria is using a different vulnerability scanning strategy for each machine or component of the information system. What best describes this approach?",
+    "answer": "A Tree-based assessment"
+  },
+  {
+    "question": "關於弱點掃描，下列敘述何者不正確？",
+    "answer": "A 弱點掃描工具的使用，可能會觸發入侵偵測系統的警告"
+  },
+  {
+    "question": "Which of these is a reason to use an exploit against a local vulnerability?",
+    "answer": "C Privilege escalation"
+  },
+  {
+    "question": "The scanner has identified something it believes to be a vulnerability. After investigation, it turns out it's not really a vulnerability. What is categorie of this vulnerabilities?",
+    "answer": "A False Positive"
+  },
+  {
+    "question": "The scanner has not identified a vulnerability. It later turns out that there was a vulnerability that the scanner missed. What is the one of the categories of vulnerabilities?",
+    "answer": "B False Negative"
+  },
+  {
+    "question": "The scanner has identified a vulnerability that, after manual investigation, turns out to be a legitimate vulnerability. What is the one of the categories of vulnerabilities?",
+    "answer": "C True Positive"
+  },
+  {
+    "question": "If you were looking for reliable exploits you could use against known vulnerabilities, what would you use?",
+    "answer": "D Exploit-DB"
+  },
+  {
+    "question": "If you were to see that someone was using OpenVAS, followed by Nessus, what might you assume?",
+    "answer": "D They were trying to reduce false positives"
+  },
+  {
+    "question": "Which of these may be considered worst practice when it comes to vulnerability scans?",
+    "answer": "C Taking no action on the results"
+  },
+  {
+    "question": "What would be a reason to use the Override feature in OpenVAS?",
+    "answer": "D You want to change a severity rating on a finding."
+  },
+  {
+    "question": "What would you use credentials for in a vulnerability scanner?",
+    "answer": "C Scanning for local vulnerabilities"
+  }
+]
+[
+  {
+    "question": "是專門用來阻擋網路入侵的硬體裝置？",
+    "answer": "C 硬體防火牆"
+  },
+  {
+    "question": "Log monitoring tools performing behavioral analysis have alerted several suspicious logins on a Linux server occurring during non-business hours... What protocol used on Linux servers to synchronize the time has stopped working?",
+    "answer": "B NTP"
+  },
+  {
+    "question": "A network admin contacts you. He is concerned that ARP spoofing or poisoning might occur on his network. What are some things he can do to prevent it?",
+    "answer": "A Use port security on his switches., B Use a tool like ARPwatch to monitor for strange ARP activity, D If you have a small network, use static ARP entries"
+  },
+  {
+    "question": "許多公司會將不同設備的日誌（Log）蒐集到同一個平台進行管理...此時為了方便分析，通常會對這些日誌進行什麼處理？",
+    "answer": "A 正規化（Normalization）"
+  },
+  {
+    "question": "下列何項「不」屬於網路安全的威脅？",
+    "answer": "B USB Attack"
+  },
+  {
+    "question": "有關 OWASP Top 10 之敘述，下列何者正確？",
+    "answer": "D 為網路應用程式漏洞的指南"
+  },
+  {
+    "question": "請問下列何網路通訊設備較符合資訊安全要求？",
+    "answer": "D 路由器(Router)"
+  },
+  {
+    "question": "下列哪一種應用程式或協定收發訊息有加密？",
+    "answer": "B TFTP"
+  },
+  {
+    "question": "探測器將系統的 NIC網卡切換應該切換到甚麼模式，以便偵察其他所有在網段上傳輸的資料？",
+    "answer": "C 混雜模式"
+  },
+  {
+    "question": "請問Protocols/Ports是在網路OSI七層的哪一層？",
+    "answer": "D 傳輸層"
+  },
+  {
+    "question": "下列何者是一種的設備在不改變電纜段流量的情況下取得訊號？",
+    "answer": "A 硬體協定分析儀"
+  },
+  {
+    "question": "You want to increase your network security by implementing a technology that only allows certain MAC addresses in specific ports in the switches; which one of the above is the best choice?",
+    "answer": "A Port Security"
+  },
+  {
+    "question": "下列哪一種是一個駭客工具包，提供各種指令來執行ARP中毒、探測、DHCP饑餓等？",
+    "answer": "C Habu"
+  },
+  {
+    "question": "下列何者允許攻擊者將給定 DNS 伺服器上目標網站的 IP 位址項目替換為他/她控制的伺服器的 IP 位址？",
+    "answer": "A DNS中毒"
+  },
+  {
+    "question": "電子郵件收信採用哪種協定？",
+    "answer": "B POP3"
+  },
+  {
+    "question": "電子郵件發信採用哪種協定？",
+    "answer": "A SMTP"
+  },
+  {
+    "question": "您的家庭網路速度似乎明顯變慢。您查看家庭路由器GUI 並注意到網路附加了一個不明主機。您應該如何防止該特定主機再次附加至網路?",
+    "answer": "C 實作 MAC位址篩選。"
+  },
+  {
+    "question": "有一名遠端工作者造訪分公司公室來參加面對面會議...該工作者嘗試將他的公司膝上型電腦與分公司的無線存取點(WAP)建立關聯，但未能成功。可能的原因為何?",
+    "answer": "C WAP設定為MAC位址篩選。"
+  },
+  {
+    "question": "您正在監視Syslog伺服器並觀察到DNS伺服器正在傳送警告嚴重性的訊息。這些訊息表示DNS伺服器的作業發生什麼情況?",
+    "answer": "C 如果問題未修正,則存在將來會導致錯誤的情況。"
+  },
+  {
+    "question": "有數名員工抱怨公司内部網路網站不再接受他們的登入資訊。您是網管人員試圖使用URL進行連線,並注意到網站上有一些拼寫錯誤...您使用IP 位址連線時,網站運作正常。請問您該怎麼做?",
+    "answer": "C 驗證本地DNS伺服器中網站進入的準確性。"
+  },
+  {
+    "question": "下列哪一個指令會顯示設定的DNS伺服器資訊和URL的IP位址解析？",
+    "answer": "C Nslookup"
+  },
+  {
+    "question": "使用者端無法連線到公司網頁伺服器。您發現有大量的半開放式TCP連線至伺服器。請問您該怎麼做?",
+    "answer": "D 採取措施阻止TCP SYN洪水攻擊。"
+  }
+]
