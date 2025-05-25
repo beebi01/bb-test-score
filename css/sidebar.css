@@ -1,0 +1,40 @@
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    background-color: var(--white);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0 12px 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 1000;
+}
+
+
+.sidebar h1, .sidebar h2 {
+    color: var(--primary-color);
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    display: block; /* ✅ 讓整個區塊變成可點擊區 */
+}
+
+.sidebar a:hover {
+    background-color: var(--hover-bg);
+    padding-left: 30px;
+}
+
+.sidebar a.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}

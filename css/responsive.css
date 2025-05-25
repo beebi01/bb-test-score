@@ -1,0 +1,22 @@
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .post-card {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
